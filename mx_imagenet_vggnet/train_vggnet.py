@@ -19,8 +19,8 @@ args = vars(ap.parse_args())
 
 # set the logging level and output file
 logging.basicConfig(level=logging.DEBUG,
-filename="training_{}.log".format(args["start_epoch"]),
-filemode="w")
+        filename="training_{}.log".format(args["start_epoch"]),
+        filemode="w")
 
 # load the RGB means for the training set, then determine the batch
 # size
@@ -52,12 +52,12 @@ valIter = mx.io.ImageRecordIter(
 
 # initialize the optimizer
 opt = mx.optimizer.SGD(learning_rate=1e-2, momentum=0.9, wd=0.0005,
-rescale_grad=1.0 / batchSize)
+        rescale_grad=1.0 / batchSize)
 
 # construct the checkpoints path, initialize the model argument and
 # auxiliary parameters
 checkpointsPath = os.path.sep.join([args["checkpoints"],
-args["prefix"]])
+        args["prefix"]])
 argParams = None
 auxParams = None
 
@@ -73,7 +73,7 @@ else:
         # load the checkpoint from disk
         print("[INFO] loading epoch {}...".format(args["start_epoch"]))
         model = mx.model.FeedForward.load(checkpointsPath,
-        args["start_epoch"])
+                args["start_epoch"])
 
         # update the model and parameters
         argParams = model.arg_params
